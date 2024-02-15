@@ -92,11 +92,6 @@ _Fix all other bugs and visual imperfections you find._
 
 -   [ ] **S1**: Implement a custom endpoint for marking single todo item as "done". Calling this endpoint sets the `done` field to `true` and the `finishedAt` field to current time. Use this new endpoint in the client.
 
-### Advanced Tasks (optional)
-
--   [ ] **O1**: Modify the `Form` component (and other related components if needed) so the form field handles not only string values, but also number. Treat empty string input as `undefined`.
--   [ ] **O2**: Limit the amount of server calls needed to a necessary minimum.
-
 ## Additional Comments
 
 -   Feel free to do any visual modifications that - in your opinion - improve the design of the application.
