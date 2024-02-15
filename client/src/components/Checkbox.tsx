@@ -5,17 +5,22 @@ import styled from "styled-components";
 
 const CheckboxStyled = styled(CheckboxPrimitive.Root)`
     all: unset;
-    background-color: white;
-    width: 25px;
-    height: 25px;
-    border-radius: 2px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    width: 25px;
+    height: 25px;
+
+    background-color: white;
+    border-radius: 2px;
     box-shadow: ${(props) => `0 2px 10px ${props.theme.colors.blackA7}`};
+
     &:hover {
         background-color: ${(props) => props.theme.colors.grass3};
     }
+
     &:focus {
         box-shadow: 0 2px 10px black;
     }

@@ -1,15 +1,17 @@
 import styled from "styled-components";
 
 export const Layout = styled.main`
-    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 600px;
+    min-height: 50vh;
+    margin: 0 30px;
     padding: 20px;
+
+    background-color: rgb(255, 255, 255);
     border: 1px solid;
     border-color: ${(props) => props.theme.colors.olive6};
     border-radius: 5px;
-    width: 100%;
-    margin: 0 30px;
-    max-width: 600px;
-    min-height: 50vh;
-    display: flex;
-    flex-direction: column;
 `;
