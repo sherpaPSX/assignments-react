@@ -6,8 +6,8 @@ const meta = {
     title: "List Item",
     component: ListItem,
     argTypes: {
-        handleRemoval: { action: "removed" },
-        handleEdit: { action: "edited" },
+        onItemDelete: { action: "removed" },
+        onItemLabelEdit: { action: "edited" },
     },
 } as Meta<typeof ListItem>;
 export default meta;

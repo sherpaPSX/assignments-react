@@ -6,8 +6,8 @@ const meta = {
     title: "Form/Form",
     component: Form,
     argTypes: {
-        handleCancel: { action: "cancelled" },
-        handleSubmit: { action: "submitted" },
+        onCancel: { action: "cancelled" },
+        onSubmit: { action: "submitted" },
     },
 } as Meta<typeof Form>;
 

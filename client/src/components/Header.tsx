@@ -18,16 +18,16 @@ const StyledDiv = styled.header`
 
 type HeaderProps = {
     children: React.ReactNode;
-    handleAddItem: () => void;
+    onItemAdd: (label: string) => void;
 };
 
 export const Header = (props: HeaderProps) => {
-    const { children, handleAddItem } = props;
+    const { children } = props;
 
     return (
         <StyledDiv>
             <h1>{children}</h1>
-            <button onClick={() => handleAddItem()}>
+            <button>
                 <PlusIcon />
             </button>
         </StyledDiv>

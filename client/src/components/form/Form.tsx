@@ -10,26 +10,26 @@ const FormStyled = styled.form`
 
 type FormProps = {
     initialValue: string;
-    handleSubmit: (data: string) => void;
-    handleCancel: () => void;
+    onSubmit: (value: string) => void;
+    onCancel: () => void;
 };
 
 export const Form = (props: FormProps) => {
-    const { initialValue, handleSubmit, handleCancel } = props;
+    const { initialValue, onSubmit, onCancel } = props;
 
-    const [data, setData] = useState(initialValue);
+    const [inputValue, setInputValue] = useState(initialValue);
 
     return (
         <FormStyled
             onSubmit={(e) => {
                 e.preventDefault();
-                handleSubmit(data);
+                onSubmit(inputValue);
             }}
             onReset={() => {
-                handleCancel();
+                onCancel();
             }}
         >
-            <Input initialValue={initialValue} handleInputChange={(value) => setData(value)} />
+            <Input value={inputValue} onValueChange={(value) => setInputValue(value)} />
             <button type={"submit"}>
                 <CheckIcon />
             </button>
