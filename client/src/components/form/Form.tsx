@@ -9,7 +9,7 @@ const StyledForm = styled.form`
     display: flex;
 `;
 
-export const Form = (props: FormProps): JSX.Element => {
+export const Form = (props: FormProps) => {
     const [data, setData] = useState(props.initialValue);
 
     return (

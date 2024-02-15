@@ -5,7 +5,7 @@ import { InputProps } from "./types";
 
 const StyledInput = styled.input``;
 
-export const Input = (props: InputProps): JSX.Element => {
+export const Input = (props: InputProps) => {
     const [value, setValue] = useState(props.initialValue);
 
     return (
