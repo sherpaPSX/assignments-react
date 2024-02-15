@@ -1,8 +1,9 @@
+import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FormProps } from "./types";
+
 import { Input } from "./Input";
-import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
+import { FormProps } from "./types";
 
 const StyledForm = styled.form`
     display: flex;

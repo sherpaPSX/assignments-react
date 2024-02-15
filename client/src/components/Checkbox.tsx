@@ -1,7 +1,7 @@
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import styled from "styled-components";
 import { CheckboxProps } from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
+import styled from "styled-components";
 
 const StyledCheckbox = styled(CheckboxPrimitive.Root)`
     all: unset;

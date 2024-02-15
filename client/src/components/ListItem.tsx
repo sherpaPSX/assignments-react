@@ -1,8 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { Checkbox } from "./Checkbox";
 import { CheckboxProps } from "@radix-ui/react-checkbox";
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
+import React from "react";
+import styled from "styled-components";
+
+import { Checkbox } from "./Checkbox";
 
 const StyledDiv = styled.div`
     display: flex;

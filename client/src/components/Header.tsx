@@ -1,6 +1,6 @@
+import { PlusIcon } from "@radix-ui/react-icons";
 import React from "react";
 import styled from "styled-components";
-import { PlusIcon } from "@radix-ui/react-icons";
 
 export type HeaderProps = {
     children: React.ReactNode;
