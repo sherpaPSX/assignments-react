@@ -3,7 +3,7 @@ import { CheckboxProps } from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
 import styled from "styled-components";
 
-const StyledCheckbox = styled(CheckboxPrimitive.Root)`
+const CheckboxStyled = styled(CheckboxPrimitive.Root)`
     all: unset;
     background-color: white;
     width: 25px;
@@ -21,14 +21,14 @@ const StyledCheckbox = styled(CheckboxPrimitive.Root)`
     }
 `;
 
-const StyledIndicator = styled(CheckboxPrimitive.Indicator)`
+const CheckboxIndicator = styled(CheckboxPrimitive.Indicator)`
     color: ${(props) => props.theme.grass11};
 `;
 
 export const Checkbox = (props: CheckboxProps) => (
-    <StyledCheckbox {...props}>
-        <StyledIndicator>
+    <CheckboxStyled {...props}>
+        <CheckboxIndicator>
             <CheckIcon />
-        </StyledIndicator>
-    </StyledCheckbox>
+        </CheckboxIndicator>
+    </CheckboxStyled>
 );

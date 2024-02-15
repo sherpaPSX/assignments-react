@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { Input } from "./Input";
 
-const StyledForm = styled.form`
+const FormStyled = styled.form`
     display: flex;
 `;
 
@@ -20,7 +20,7 @@ export const Form = (props: FormProps) => {
     const [data, setData] = useState(initialValue);
 
     return (
-        <StyledForm
+        <FormStyled
             onSubmit={(e) => {
                 e.preventDefault();
                 handleSubmit(data);
@@ -36,6 +36,6 @@ export const Form = (props: FormProps) => {
             <button type={"reset"}>
                 <Cross1Icon />
             </button>
-        </StyledForm>
+        </FormStyled>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const StyledInput = styled.input``;
+const InputStyled = styled.input``;
 
 type InputProps = {
     initialValue: string;
@@ -14,7 +14,7 @@ export const Input = (props: InputProps) => {
     const [value, setValue] = useState(initialValue);
 
     return (
-        <StyledInput
+        <InputStyled
             value={value}
             onChange={(e) => {
                 const value = e.currentTarget.value;
