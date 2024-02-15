@@ -9,13 +9,18 @@ const StyledDiv = styled.footer`
     border-color: ${(props) => props.theme.colors.olive6};
 `;
 
-export type FooterProps = {
+type FooterProps = {
     todoItems?: number;
     doneItems?: number;
 };
-export const Footer: React.FC<FooterProps> = ({ todoItems, doneItems }) => (
-    <StyledDiv>
-        Todo: {todoItems}
-        Done: {todoItems}
-    </StyledDiv>
-);
+
+export const Footer = (props: FooterProps) => {
+    const { todoItems, doneItems } = props;
+
+    return (
+        <StyledDiv>
+            Todo: {todoItems}
+            Done: {todoItems}
+        </StyledDiv>
+    );
+};

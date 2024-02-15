@@ -3,26 +3,33 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Input } from "./Input";
-import { FormProps } from "./types";
 
 const StyledForm = styled.form`
     display: flex;
 `;
 
+type FormProps = {
+    initialValue: string;
+    handleSubmit: (data: string) => void;
+    handleCancel: () => void;
+};
+
 export const Form = (props: FormProps) => {
-    const [data, setData] = useState(props.initialValue);
+    const { initialValue, handleSubmit, handleCancel } = props;
+
+    const [data, setData] = useState(initialValue);
 
     return (
         <StyledForm
             onSubmit={(e) => {
                 e.preventDefault();
-                props.handleSubmit(data);
+                handleSubmit(data);
             }}
             onReset={() => {
-                props.handleCancel();
+                handleCancel();
             }}
         >
-            <Input initialValue={props.initialValue} handleInputChange={(value: string) => setData(value)} />
+            <Input initialValue={initialValue} handleInputChange={(value) => setData(value)} />
             <button type={"submit"}>
                 <CheckIcon />
             </button>

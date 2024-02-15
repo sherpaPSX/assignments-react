@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { InputProps } from "./types";
-
 const StyledInput = styled.input``;
 
+type InputProps = {
+    initialValue: string;
+    handleInputChange: (value: string) => void;
+};
+
 export const Input = (props: InputProps) => {
-    const [value, setValue] = useState(props.initialValue);
+    const { initialValue, handleInputChange } = props;
+
+    const [value, setValue] = useState(initialValue);
 
     return (
         <StyledInput
@@ -14,7 +19,7 @@ export const Input = (props: InputProps) => {
             onChange={(e) => {
                 const value = e.currentTarget.value;
                 setValue(value);
-                props.handleInputChange(value);
+                handleInputChange(value);
             }}
         />
     );

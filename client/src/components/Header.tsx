@@ -2,11 +2,6 @@ import { PlusIcon } from "@radix-ui/react-icons";
 import React from "react";
 import styled from "styled-components";
 
-export type HeaderProps = {
-    children: React.ReactNode;
-    handleAddItem: () => void;
-};
-
 const StyledDiv = styled.header`
     display: flex;
     button {
@@ -21,11 +16,20 @@ const StyledDiv = styled.header`
     }
 `;
 
-export const Header: React.FC<HeaderProps> = ({ handleAddItem, children }) => (
-    <StyledDiv>
-        <h1>{children}</h1>
-        <button onClick={() => handleAddItem()}>
-            <PlusIcon />
-        </button>
-    </StyledDiv>
-);
+type HeaderProps = {
+    children: React.ReactNode;
+    handleAddItem: () => void;
+};
+
+export const Header = (props: HeaderProps) => {
+    const { children, handleAddItem } = props;
+
+    return (
+        <StyledDiv>
+            <h1>{children}</h1>
+            <button onClick={() => handleAddItem()}>
+                <PlusIcon />
+            </button>
+        </StyledDiv>
+    );
+};

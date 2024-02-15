@@ -12,9 +12,13 @@ const theme = {
     },
 };
 
-export const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => (
-    <ThemeProviderStyled theme={theme}>
-        <GlobalStyle />
-        {children}
-    </ThemeProviderStyled>
-);
+export const ThemeProvider = (props: PropsWithChildren) => {
+    const { children } = props;
+
+    return (
+        <ThemeProviderStyled theme={theme}>
+            <GlobalStyle />
+            {children}
+        </ThemeProviderStyled>
+    );
+};

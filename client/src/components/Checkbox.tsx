@@ -25,7 +25,7 @@ const StyledIndicator = styled(CheckboxPrimitive.Indicator)`
     color: ${(props) => props.theme.grass11};
 `;
 
-export const Checkbox: React.FC<CheckboxProps> = (props) => (
+export const Checkbox = (props: CheckboxProps) => (
     <StyledCheckbox {...props}>
         <StyledIndicator>
             <CheckIcon />

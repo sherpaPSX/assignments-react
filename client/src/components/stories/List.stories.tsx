@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { Meta, StoryObj } from "@storybook/react";
 
 import { List } from "../List";
-import { ListItem, LiteItemProp } from "../ListItem";
+import { ListItem, LiteeItemProp } from "../ListItem";
 
 const meta = {
     title: "List",
@@ -12,7 +12,7 @@ export default meta;
 
 type Story = StoryObj<typeof ListItem>;
 
-const emptyHandlers: Pick<LiteItemProp, "handleEdit" | "handleRemoval"> = {
+const emptyHandlers: Pick<LiteeItemProp, "handleEdit" | "handleRemoval"> = {
     handleRemoval: action("Removal requested"),
     handleEdit: action("Edit requested"),
 };
