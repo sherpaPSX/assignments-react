@@ -1,71 +1,107 @@
-# Datamole's React / TypeScript assignment
+# Datamole's React / TypeScript Assignment
 
 Please, read following instructions and let us know if anything is not clear.
 
-## General rules and requirements
+## 📋 General Rules and Requirements
 
-* Use any npm package you find appropriate.
-* Ask questions when in doubt what we expect.
-* When you are not able to solve something in reasonable amount of time, write an explanation of why
-  (what knowledge is missing, why it needs so much time, etc.), and skip it.
-* Follow all code quality principles you know and are used to.
-* You should not spend with our assignment more than 6 hours.
-  When this is not doable, choose what to implement and what not to.
-* Send us your work preferably as a link to git repository (e.g. GitHub).
+-   Utilize any npm package you deem suitable.
+-   In case of uncertainty about our expectations, please ask.
+-   If unable to resolve an issue promptly, provide a brief explanation (e.g., missing knowledge, time constraints) and proceed.
+-   Adhere to all familiar code quality principles.
+-   Limit time spent on our assignment to a maximum of 6 hours. If necessary, prioritize tasks.
+-   Submit your work via a git repository link (e.g., GitHub).
+    -   Include the time spent on the assignment in your submission.
 
-## Time estimation
-* First read the assigment, check the provided code, and make clear you understand what we ask for.
-* Try to estimate the time you require to finish it.
-* Email us your estimation and a date, where you expect the work to be done.
-  Aim for realistic date and keep in mind all other responsibilities you may have
-  (your current work, family duties, vacation or public holidays)
+### 🚫 Restrictions
 
-## The actual work
+-   Do not modify the API (props) of the provided components.
+-   Do not use any component library (Material UI for example).
+-   Do not use Tailwind CSS.
 
-### Client app
-More information about client are in `client/README.md`. Make sure you read them.
+### ⏰ Time Estimation
 
-Using provided UI components, implement following modifications, bugfixes or new features (you can decide in what order):
+-   Start by thoroughly reading the assignment and reviewing the provided code to ensure you fully grasp the requirements.
+-   Estimate the time needed to complete the assignment.
+-   Email us your estimated completion time along with a realistic deadline, considering your existing commitments (e.g., work obligations, family responsibilities, vacations, or public holidays).
 
-- [ ] **B1**: Fix all bugs and visual imperfections you find
-- [ ] **B2**: Fix layout of non-empty `List` component
-- [ ] **B3**: Fix Layout component so the `Footer` is always attached to its bottom
-- [ ] **UI1**: Style `Header` so the button is aligned on the right
-- [ ] **UI2**: Style `ListItem` so action buttons are aligned on the right
-- [ ] **UI3**: Style `ListItem` so the action buttons are only visible when hovering over the item
-- [ ] **F1**: Modify `Footer` to show 0 when no value(s) were passed
-- [ ] **F2**: After button in header is clicked, show `Form` component in the `Header` instead of the clicked button. If the Form is submitted, a new list should be saved on backend and list of all items updated
-- [ ] **F3**: When edit button on todo item is clicked, the row should be replaced by the `Form` component (same as for creating new todo item)
-- [ ] **F4**: Load items from API
-   1) Implement removing todo item
-   1) Implement saving "checked" state of a todo item when changed
-   1) Persist all changes, additions and removals of todo items on server using API calls
-- [ ] **F5**: Sort list of todo items so the _done_ (=checked) items are on the bottom; next sort items by creating date, descending
-- [ ] **F6**: Show number of todo/done items in `Footer`
-- [ ] **F7**: Create a `Button` component and use it instead of all `button` html elements
-- [ ] **SB1**: Add story/stories for `Layout` component
-- [ ] **SB2**: Add story showing `ListItem` with visible buttons (implemented in _UI3_)
-- [ ] **SB3**: Add stories showing available `Button` variations
+## 📝 Assignment Tasks
+
+Complete all the tasks below.
+
+### Client Application
+
+More information about the client are in the `client/README.md`. Make sure you read them.
+
+Using the provided UI components, implement the following modifications, bugfixes or new features (you can decide in what order):
+
+#### Bugs
+
+-   [ ] **B1**: `List` content
+    -   Fix the content alignment of the non-empty `List` component.
+-   [ ] **B2**: `Footer` alignment
+    -   Fix the `Layout` component so the `Footer` is always attached to the bottom of the `Layout`.
+
+_Fix all other bugs and visual imperfections you find._
+
+#### Features
+
+-   [ ] **F1**: Default values in `Footer`
+    -   Modify the counters in `Footer` to show 0 when no value(s) are passed.
+-   [ ] **F2**: Load todo items
+    -   After opening the application, todo items should be loaded from the server
+    -   The todo items should be displayed in the `List` component.
+-   [ ] **F3**: Add a todo item
+    -   Implement logic, which toggles visibility between the "add" button in the `Header` and a `Form` component.
+    -   Entering a value inside the `Form` component and submitting it should create a new todo item.
+    -   Data should be persisted on the server via an API call.
+-   [ ] **F4**: Edit a todo item's label
+    -   Implement logic, which toggles visibility between the "edit" button in the `ListItem` and a `Form` component.
+    -   Entering a value inside the `Form` component and submitting it should edit the existing todo item.
+    -   Changes to the data should be persisted on the server via an API call.
+-   [ ] **F5**: Complete a todo item
+    -   After clicking on the checkbox in the `ListItem`, the todo item should toggle between "done" and "todo" states.
+    -   Changes to the data should be persisted on the server via an API call.
+-   [ ] **F6**: Delete a todo item
+    -   After clicking the "delete" button in the `ListItem`, the todo item should be deleted.
+    -   Changes to the data should be persisted on the server via an API call.
+-   [ ] **F7**: Sort the todo items
+    -   Sort the list of the todo items:
+        -   "todo" items (not "done") should be displayed first,
+        -   after that, items should be sorted by their creation date, descending.
+-   [ ] **F8**: Count the todo items
+    -   Show a number of the "todo"/"done" items in the `Footer`.
+-   [ ] **F9**: `Button` component
+    -   Create a `Button` component and use it instead of HTML `button` elements.
+
+#### Styling
+
+-   [ ] **UI1**: `Header` "add" button alignment
+    -   The "add" button should be aligned to the right in the `Header` component.
+-   [ ] **UI2**: `ListItem` actions alignment
+    -   Action buttons in the `ListItem` component should be aligned to the right.
+-   [ ] **UI3**: `ListItem` actions visibility
+    -   Action buttons in the `ListItem` component should be visible only when hovering over the `ListItem`.
+
+#### Stories
+
+-   [ ] **SB1**: Add a story/stories for the `Layout` component.
+-   [ ] **SB2**: Add stories showing available `Button` variants.
+-   [ ] **SB3**: Add a story showcasing the `ListItem` actions visibility change on hover (implemented in _"UI3"_).
 
 ### Server
-- [ ] **S1**: Implement custom endpoint for marking single todo item as "done". Calling this endpoint sets `done` field to `true` and `finishedAt` field sets to current time. Use this new endpoint on client
 
-### Advanced tasks (optional)
-- [ ] **O1**: modify the `Form` component (and related ones if needed) so the form field handles not only string, but also number and treat empty string input as `undefiened`
-- [ ] **O2**: limit amount of server calls needed to necessary minimum
+-   [ ] **S1**: Implement a custom endpoint for marking single todo item as "done". Calling this endpoint sets the `done` field to `true` and the `finishedAt` field to current time. Use this new endpoint in the client.
 
-## Additional comments and restrictions:
-- do not modify API (props) of provided components unless achieving required tasks would not be possible otherwise,
-- do not use any component library like Material UI; do not use Tailwind,
-- feel free to do any other visual modifications that - in your opinion - makes it looking nicer,
-- feel free to install and use any public package you may need
+## Additional Comments
+
+-   Feel free to do any visual modifications that - in your opinion - improve the design of the application.
+-   Feel free to install and use any public package you may need.
 
 ### GitHub
-- do your best to use atomic commits
-- in each commit that solves (fully or partly) one of the tasks above, add tasks id into commit message. For example: _B1: fix typo in ..._   
+
+-   Do your best to use atomic commits.
+-   In each commit that solves (fully or partly) one of the tasks above, add the task's id into the commit message. For example: _"B1: fix typo in ..."_.
 
 ### Storybook
-- We use Storybook format CSF3, but you can use older version of CSF that you are familiar with
-- If you are not familiar with Storybook at all: try at least the _SB2_ task; it should be doable only by copying and modifying the already existing story
 
-
+-   We use the Storybook's format CSF3, but you can use the older version of the CSF format if you are more familiar with it.

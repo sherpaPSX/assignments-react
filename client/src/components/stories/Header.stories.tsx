@@ -6,7 +6,7 @@ const meta = {
     title: "Header",
     component: Header,
     argTypes: {
-        handleAddItem: { action: "item added" },
+        onItemAdd: { action: "item added" },
     },
 } as Meta<typeof Header>;
 export default meta;

@@ -7,14 +7,14 @@ server.use(middlewares);
 
 server.use(jsonServer.bodyParser);
 server.use((req, res, next) => {
-  if (req.method === "POST") {
-    req.body.createdAt = Date.now();
-  }
-  next();
+    if (req.method === "POST") {
+        req.body.createdAt = Date.now();
+    }
+    next();
 });
 
 // Use default router
 server.use(router);
 server.listen(3000, () => {
-  console.log("JSON Server is running");
+    console.log("JSON Server is running");
 });

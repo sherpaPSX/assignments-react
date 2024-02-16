@@ -1,8 +1,8 @@
+import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import React from "react";
 import styled from "styled-components";
+
 import { Checkbox } from "./Checkbox";
-import { CheckboxProps } from "@radix-ui/react-checkbox";
-import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -13,21 +13,27 @@ const Label = styled.label`
     margin-left: 15px;
 `;
 
-export type LiteItemProp = CheckboxProps & {
+export type LiteeItemProp = {
     label: string;
-    handleEdit: () => void;
-    handleRemoval: () => void;
+    isDone: boolean;
+    onItemLabelEdit: (label: string) => void;
+    onItemDoneToggle: (isDone: boolean) => void;
+    onItemDelete: () => void;
 };
 
-export const ListItem: React.FC<LiteItemProp> = ({ label, handleRemoval, handleEdit, ...checkboxProps }) => (
-    <StyledDiv>
-        <Checkbox {...checkboxProps} />
-        <Label>{label}</Label>
-        <button onClick={() => handleEdit()}>
-            <TrashIcon />
-        </button>
-        <button onClick={() => handleRemoval()}>
-            <Pencil1Icon />
-        </button>
-    </StyledDiv>
-);
+export const ListItem = (props: LiteeItemProp) => {
+    const { label, isDone, onItemLabelEdit, onItemDoneToggle, onItemDelete } = props;
+
+    return (
+        <StyledDiv>
+            <Checkbox checked={isDone} onCheckedChange={onItemDoneToggle} />
+            <Label>{label}</Label>
+            <button>
+                <TrashIcon />
+            </button>
+            <button onClick={() => onItemDelete()}>
+                <Pencil1Icon />
+            </button>
+        </StyledDiv>
+    );
+};

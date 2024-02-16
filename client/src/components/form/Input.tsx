@@ -1,19 +1,21 @@
-import React, { useState } from "react";
 import styled from "styled-components";
-import { InputProps } from "./types";
 
-const StyledInput = styled.input``;
+const InputStyled = styled.input``;
 
-export const Input = (props: InputProps): JSX.Element => {
-    const [value, setValue] = useState(props.initialValue);
+type InputProps = {
+    value: string;
+    onValueChange: (value: string) => void;
+};
+
+export const Input = (props: InputProps) => {
+    const { value, onValueChange } = props;
 
     return (
-        <StyledInput
+        <InputStyled
             value={value}
             onChange={(e) => {
                 const value = e.currentTarget.value;
-                setValue(value);
-                props.handleInputChange(value);
+                onValueChange(value);
             }}
         />
     );

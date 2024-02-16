@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+
 import { Input } from "../Input";
 
 const meta = {
@@ -10,11 +11,12 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
     args: {
-        initialValue: "",
+        value: "",
     },
 };
-export const WithInitialValue: Story = {
+
+export const WithValue: Story = {
     args: {
-        initialValue: "Lorem ipsum",
+        value: "Lorem ipsum",
     },
 };

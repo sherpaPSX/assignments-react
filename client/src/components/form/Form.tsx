@@ -1,33 +1,41 @@
+import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FormProps } from "./types";
-import { Input } from "./Input";
-import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 
-const StyledForm = styled.form`
+import { Input } from "./Input";
+
+const FormStyled = styled.form`
     display: flex;
 `;
 
-export const Form = (props: FormProps): JSX.Element => {
-    const [data, setData] = useState(props.initialValue);
+type FormProps = {
+    initialValue: string;
+    onSubmit: (value: string) => void;
+    onCancel: () => void;
+};
+
+export const Form = (props: FormProps) => {
+    const { initialValue, onSubmit, onCancel } = props;
+
+    const [inputValue, setInputValue] = useState(initialValue);
 
     return (
-        <StyledForm
+        <FormStyled
             onSubmit={(e) => {
                 e.preventDefault();
-                props.handleSubmit(data);
+                onSubmit(inputValue);
             }}
             onReset={() => {
-                props.handleCancel();
+                onCancel();
             }}
         >
-            <Input initialValue={props.initialValue} handleInputChange={(value: string) => setData(value)} />
+            <Input value={inputValue} onValueChange={(value) => setInputValue(value)} />
             <button type={"submit"}>
                 <CheckIcon />
             </button>
             <button type={"reset"}>
                 <Cross1Icon />
             </button>
-        </StyledForm>
+        </FormStyled>
     );
 };
