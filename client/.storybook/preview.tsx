@@ -1,6 +1,15 @@
+import type { Parameters, Preview, Decorator } from "@storybook/react";
 import { ThemeProvider } from "../src/components/providers/ThemeProvider";
 
-export const parameters = {
+export const decorators: Decorator[] = [
+    (Story) => (
+        <ThemeProvider>
+            <Story />
+        </ThemeProvider>
+    ),
+];
+
+export const parameters: Parameters = {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
         matchers: {
@@ -9,11 +18,3 @@ export const parameters = {
         },
     },
 };
-
-export const decorators = [
-    (Story) => (
-        <ThemeProvider>
-            <Story />
-        </ThemeProvider>
-    ),
-];
