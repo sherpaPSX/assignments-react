@@ -6,4 +6,4 @@ Components responsible for the data fetching/manipulating as well as for the kee
 
 ## Storybook
 
-The application comes with Storybook and stories for the UI components. To run the Storybook execute `yarn storybook`.
+The application comes with Storybook and stories for the UI components. To run the Storybook execute `pnpm dev:storybook`.

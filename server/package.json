@@ -1,12 +1,12 @@
 {
-    "name": "ts-react-assignment-server",
+    "name": "@datamole/react-assignment-server",
     "private": true,
-    "version": "0.1.0",
+    "version": "1.0.0",
     "scripts": {
         "start": "node server.js",
         "dev": "node --watch server.js"
     },
     "dependencies": {
-        "json-server": "^0.17.0"
+        "json-server": "^0.17.4"
     }
 }
