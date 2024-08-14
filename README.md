@@ -11,6 +11,7 @@ Please, read following instructions and let us know if anything is not clear.
 -   Limit time spent on our assignment to a maximum of 6 hours. If necessary, prioritize tasks.
 -   Submit your work via a git repository link (e.g., GitHub).
     -   Include the time spent on the assignment in your submission.
+-   Document key solutions and decisions. Briefly explain your approach and reasoning in complex areas.
 
 ### 🚫 Restrictions
 
