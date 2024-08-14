@@ -83,7 +83,7 @@ _Fix all other bugs and visual imperfections you find._
 -   [ ] **UI3**: `ListItem` actions visibility
     -   Action buttons in the `ListItem` component should be visible only when hovering over the `ListItem`.
 
-#### Stories
+#### Stories (optional tasks)
 
 -   [ ] **SB1**: Add a story/stories for the `Layout` component.
 -   [ ] **SB2**: Add stories showing available `Button` variants.
