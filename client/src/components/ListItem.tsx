@@ -5,14 +5,26 @@ import styled from "styled-components";
 import { Checkbox } from "./Checkbox";
 import { Form } from "./form";
 import { useUpdateTodoMutation } from "../services/todosApi";
+import { Button } from "./Button";
+
+const Label = styled.label`
+    margin-left: 15px;
+`;
 
 const StyledDiv = styled.div`
     display: flex;
     align-items: center;
+    gap: 0.5rem;
+    justify-content: space-between;
+
+    ${Label} {
+        margin-right: auto;
+    }
 `;
 
-const Label = styled.label`
-    margin-left: 15px;
+const ItemActions = styled.div`
+    display: inline-flex;
+    gap: 0.5rem;
 `;
 
 export type LiteeItemProp = {
@@ -38,12 +50,14 @@ export const ListItem = (props: LiteeItemProp) => {
                 <>
                     <Checkbox checked={isDone} onCheckedChange={onItemDoneToggle} />
                     <Label>{label}</Label>
-                    <button onClick={() => onItemDelete()}>
-                        <TrashIcon />
-                    </button>
-                    <button onClick={() => setIsFormVisible(true)}>
-                        <Pencil1Icon />
-                    </button>
+                    <ItemActions>
+                        <Button variant="error" onClick={() => onItemDelete()}>
+                            <TrashIcon />
+                        </Button>
+                        <Button variant="primary" onClick={() => setIsFormVisible(true)}>
+                            <Pencil1Icon />
+                        </Button>
+                    </ItemActions>
                 </>
             ) : (
                 <Form

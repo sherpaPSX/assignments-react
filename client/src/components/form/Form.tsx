@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Input } from "./Input";
+import { Button } from "../Button";
 
 const FormStyled = styled.form`
     display: flex;
+    gap: 0.5rem;
 `;
 
 type FormProps = {
@@ -30,12 +32,12 @@ export const Form = (props: FormProps) => {
             }}
         >
             <Input value={inputValue} onValueChange={(value) => setInputValue(value)} />
-            <button type={"submit"}>
+            <Button type={"submit"} variant="primary">
                 <CheckIcon />
-            </button>
-            <button type={"reset"} onClick={() => onCancel()}>
+            </Button>
+            <Button type={"reset"} variant="error" onClick={() => onCancel()}>
                 <Cross1Icon />
-            </button>
+            </Button>
         </FormStyled>
     );
 };
