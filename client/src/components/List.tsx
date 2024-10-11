@@ -1,10 +1,5 @@
 import styled from "styled-components";
-import {
-    useDeleteTodoMutation,
-    useGetTodosQuery,
-    useUpdateTodoMutation,
-    useFinishTodoMutation,
-} from "../services/todosApi";
+import { useDeleteTodoMutation, useGetTodosQuery, useFinishTodoMutation } from "../services/todosApi";
 import { ListItem } from "./ListItem";
 
 const StyledList = styled.div`
@@ -16,7 +11,6 @@ const StyledList = styled.div`
 export const List = () => {
     const { data } = useGetTodosQuery();
     const [deleteItemHandler] = useDeleteTodoMutation();
-    const [updateItemHandler] = useUpdateTodoMutation();
     const [finishItemHandler] = useFinishTodoMutation();
 
     return (
@@ -24,11 +18,11 @@ export const List = () => {
             {data?.map(({ isDone, label, id }) => (
                 <ListItem
                     key={id}
+                    id={id}
                     isDone={isDone}
                     label={label}
                     onItemDelete={() => deleteItemHandler({ id })}
                     onItemDoneToggle={() => finishItemHandler({ id, isDone: !isDone })}
-                    onItemLabelEdit={(label) => updateItemHandler({ id, label })}
                 />
             ))}
         </StyledList>

@@ -1,8 +1,10 @@
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { Checkbox } from "./Checkbox";
+import { Form } from "./form";
+import { useUpdateTodoMutation } from "../services/todosApi";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -14,26 +16,42 @@ const Label = styled.label`
 `;
 
 export type LiteeItemProp = {
+    id: string;
     label: string;
     isDone: boolean;
-    onItemLabelEdit: (label: string) => void;
     onItemDoneToggle: (isDone: boolean) => void;
     onItemDelete: () => void;
 };
 
 export const ListItem = (props: LiteeItemProp) => {
-    const { label, isDone, onItemLabelEdit, onItemDoneToggle, onItemDelete } = props;
+    const { id, label, isDone, onItemDoneToggle, onItemDelete } = props;
+    const [isFormVisible, setIsFormVisible] = useState(false);
+    const [updateTodoHandler, { isSuccess }] = useUpdateTodoMutation();
+
+    useEffect(() => {
+        setIsFormVisible(false);
+    }, [isSuccess]);
 
     return (
         <StyledDiv>
-            <Checkbox checked={isDone} onCheckedChange={onItemDoneToggle} />
-            <Label>{label}</Label>
-            <button onClick={() => onItemDelete()}>
-                <TrashIcon />
-            </button>
-            <button onClick={() => onItemLabelEdit(label)}>
-                <Pencil1Icon />
-            </button>
+            {!isFormVisible ? (
+                <>
+                    <Checkbox checked={isDone} onCheckedChange={onItemDoneToggle} />
+                    <Label>{label}</Label>
+                    <button onClick={() => onItemDelete()}>
+                        <TrashIcon />
+                    </button>
+                    <button onClick={() => setIsFormVisible(true)}>
+                        <Pencil1Icon />
+                    </button>
+                </>
+            ) : (
+                <Form
+                    initialValue={label}
+                    onCancel={() => setIsFormVisible(false)}
+                    onSubmit={(value) => updateTodoHandler({ id, label: value })}
+                />
+            )}
         </StyledDiv>
     );
 };
