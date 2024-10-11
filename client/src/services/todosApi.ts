@@ -9,6 +9,19 @@ export const todosApi = createApi({
         getTodos: builder.query<TodoItemsResponse, void>({
             query: () => ({ url: "/items" }),
             providesTags: ["Todos"],
+            transformResponse: (response: TodoItemsResponse) => {
+                return response
+                    .sort((a, b) => b.createdAt - a.createdAt)
+                    .sort((a, b) => {
+                        if (a.isDone && !b.isDone) {
+                            return 1;
+                        } else if (!a.isDone && b.isDone) {
+                            return -1;
+                        } else {
+                            return 0;
+                        }
+                    });
+            },
         }),
         addTodo: builder.mutation<TodoItemT, AddTodoArgs>({
             query: (body) => ({

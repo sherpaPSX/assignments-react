@@ -1,7 +1,7 @@
 export type TodoItemT = {
     label: string;
     isDone: boolean;
-    createdAt: string;
+    createdAt: number;
     id: string;
 };
 
