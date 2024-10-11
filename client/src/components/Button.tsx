@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export interface ButtonProps {
-    variant?: "primary" | "error" | "success";
+    variant?: "primary" | "danger" | "success";
 }
 
 export const Button = styled.button<ButtonProps>`
@@ -16,7 +16,7 @@ export const Button = styled.button<ButtonProps>`
     ${(props) =>
         props.variant === "success" &&
         css`
-            background-color: blue;
+            background-color: green;
             color: white;
         `}
 
@@ -27,7 +27,7 @@ export const Button = styled.button<ButtonProps>`
             color: white;
         `}
     ${(props) =>
-        props.variant === "error" &&
+        props.variant === "danger" &&
         css`
             background-color: red;
             color: white;

@@ -60,7 +60,7 @@ export const ListItem = (props: LiteeItemProp) => {
                     <Checkbox checked={isDone} onCheckedChange={onItemDoneToggle} />
                     <Label>{label}</Label>
                     <ItemActions>
-                        <Button variant="error" onClick={() => onItemDelete()}>
+                        <Button variant="danger" onClick={() => onItemDelete()}>
                             <TrashIcon />
                         </Button>
                         <Button variant="primary" onClick={() => setIsFormVisible(true)}>
