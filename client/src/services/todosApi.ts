@@ -19,13 +19,21 @@ export const todosApi = createApi({
                 },
             }),
         }),
-        patchTodo: builder.mutation<TodoItemT, PatchTodoArgs>({
-            query: ({ id, ...patch }) => ({
+        updateTodo: builder.mutation<TodoItemT, UpdateTodoArgs>({
+            query: ({ id, label }) => ({
                 url: `/items/${id}`,
                 method: "PATCH",
                 body: {
-                    ...patch,
+                    label,
                 },
+            }),
+            invalidatesTags: ["Todos"],
+        }),
+
+        finishTodo: builder.mutation<void, FinishTodoArgs>({
+            query: ({ id }) => ({
+                url: `/items/${id}/complete`,
+                method: "PATCH",
             }),
             invalidatesTags: ["Todos"],
         }),
@@ -41,9 +49,14 @@ export const todosApi = createApi({
 });
 
 type PostTodoArgs = Omit<TodoItemT, "createdAt">;
-type PatchTodoArgs = Partial<Pick<TodoItemT, "isDone" | "label">> & {
-    id: TodoItemT["id"];
-};
+type UpdateTodoArgs = Pick<TodoItemT, "id" | "label">;
 type DeleteTodoArgs = Pick<TodoItemT, "id">;
+type FinishTodoArgs = Pick<TodoItemT, "id">;
 
-export const { useGetTodosQuery, usePostTodoMutation, usePatchTodoMutation, useDeleteTodoMutation } = todosApi;
+export const {
+    useGetTodosQuery,
+    usePostTodoMutation,
+    useUpdateTodoMutation,
+    useFinishTodoMutation,
+    useDeleteTodoMutation,
+} = todosApi;

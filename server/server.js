@@ -13,6 +13,19 @@ server.use((req, res, next) => {
     next();
 });
 
+server.patch("/items/:id/complete", (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    const db = router.db;
+    const item = db.get("items").find({ id }).value();
+
+    if (item) {
+        db.get("items").find({ id }).assign({ isDone: true, finishedAt: Date.now() }).write();
+        res.status(200).json({ message: "Item marked as completed", item });
+    } else {
+        res.status(404).json({ message: "Item not found" });
+    }
+});
+
 // Use default router
 server.use(router);
 server.listen(3000, () => {
