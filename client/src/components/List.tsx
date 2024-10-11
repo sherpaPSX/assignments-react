@@ -1,6 +1,30 @@
 import styled from "styled-components";
+import { useDeleteTodoMutation, useGetTodosQuery, usePatchTodoMutation } from "../services/todosApi";
+import { ListItem } from "./ListItem";
 
-export const List = styled.div`
+const StyledList = styled.div`
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 `;
+
+export const List = () => {
+    const { data } = useGetTodosQuery();
+    const [deleteItemHandler] = useDeleteTodoMutation();
+    const [patchItemHandler] = usePatchTodoMutation();
+
+    return (
+        <StyledList>
+            {data?.map(({ isDone, label, id }) => (
+                <ListItem
+                    key={id}
+                    isDone={isDone}
+                    label={label}
+                    onItemDelete={() => deleteItemHandler({ id })}
+                    onItemDoneToggle={() => patchItemHandler({ id, isDone: !isDone })}
+                    onItemLabelEdit={() => console.log("TODO Implement update")}
+                />
+            ))}
+        </StyledList>
+    );
+};
