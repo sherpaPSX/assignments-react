@@ -10,7 +10,7 @@ export const todosApi = createApi({
             query: () => ({ url: "/items" }),
             providesTags: ["Todos"],
         }),
-        postTodo: builder.mutation<TodoItemT, PostTodoArgs>({
+        addTodo: builder.mutation<TodoItemT, AddTodoArgs>({
             query: (body) => ({
                 url: "/items",
                 method: "POST",
@@ -18,6 +18,7 @@ export const todosApi = createApi({
                     ...body,
                 },
             }),
+            invalidatesTags: ["Todos"],
         }),
         updateTodo: builder.mutation<TodoItemT, UpdateTodoArgs>({
             query: ({ id, label }) => ({
@@ -48,14 +49,14 @@ export const todosApi = createApi({
     }),
 });
 
-type PostTodoArgs = Omit<TodoItemT, "createdAt">;
+type AddTodoArgs = Pick<TodoItemT, "label">;
 type UpdateTodoArgs = Pick<TodoItemT, "id" | "label">;
 type DeleteTodoArgs = Pick<TodoItemT, "id">;
 type FinishTodoArgs = Pick<TodoItemT, "id">;
 
 export const {
     useGetTodosQuery,
-    usePostTodoMutation,
+    useAddTodoMutation,
     useUpdateTodoMutation,
     useFinishTodoMutation,
     useDeleteTodoMutation,

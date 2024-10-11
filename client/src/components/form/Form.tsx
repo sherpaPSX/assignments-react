@@ -33,7 +33,7 @@ export const Form = (props: FormProps) => {
             <button type={"submit"}>
                 <CheckIcon />
             </button>
-            <button type={"reset"}>
+            <button type={"reset"} onClick={() => onCancel()}>
                 <Cross1Icon />
             </button>
         </FormStyled>
