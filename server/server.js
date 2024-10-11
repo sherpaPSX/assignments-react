@@ -18,11 +18,10 @@ server.patch("/items/:id/complete", (req, res) => {
     const db = router.db;
     const item = db.get("items").find({ id }).value();
     if (item) {
-        if (req.body.isDone) {
-            db.get("items").find({ id }).assign({ isDone: req.body.isDone, finishedAt: Date.now() }).write();
-        } else {
-            db.get("items").find({ id }).assign({ isDone: req.body.isDone, finishedAt: "" }).write();
-        }
+        db.get("items")
+            .find({ id })
+            .assign({ isDone: req.body.isDone, finishedAt: req.body.isDone ? Date.now() : "" })
+            .write();
 
         res.status(200).json({ message: "Item marked as completed", item });
     } else {
