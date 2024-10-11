@@ -27,7 +27,7 @@ export const List = () => {
                     isDone={isDone}
                     label={label}
                     onItemDelete={() => deleteItemHandler({ id })}
-                    onItemDoneToggle={() => finishItemHandler({ id })}
+                    onItemDoneToggle={() => finishItemHandler({ id, isDone: !isDone })}
                     onItemLabelEdit={(label) => updateItemHandler({ id, label })}
                 />
             ))}

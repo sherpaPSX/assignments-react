@@ -32,9 +32,12 @@ export const todosApi = createApi({
         }),
 
         finishTodo: builder.mutation<void, FinishTodoArgs>({
-            query: ({ id }) => ({
+            query: ({ id, isDone }) => ({
                 url: `/items/${id}/complete`,
                 method: "PATCH",
+                body: {
+                    isDone,
+                },
             }),
             invalidatesTags: ["Todos"],
         }),
@@ -52,7 +55,7 @@ export const todosApi = createApi({
 type AddTodoArgs = Pick<TodoItemT, "label">;
 type UpdateTodoArgs = Pick<TodoItemT, "id" | "label">;
 type DeleteTodoArgs = Pick<TodoItemT, "id">;
-type FinishTodoArgs = Pick<TodoItemT, "id">;
+type FinishTodoArgs = Pick<TodoItemT, "id" | "isDone">;
 
 export const {
     useGetTodosQuery,

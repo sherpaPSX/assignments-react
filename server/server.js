@@ -17,9 +17,13 @@ server.patch("/items/:id/complete", (req, res) => {
     const id = parseInt(req.params.id, 10);
     const db = router.db;
     const item = db.get("items").find({ id }).value();
-
     if (item) {
-        db.get("items").find({ id }).assign({ isDone: true, finishedAt: Date.now() }).write();
+        if (req.body.isDone) {
+            db.get("items").find({ id }).assign({ isDone: req.body.isDone, finishedAt: Date.now() }).write();
+        } else {
+            db.get("items").find({ id }).assign({ isDone: req.body.isDone, finishedAt: "" }).write();
+        }
+
         res.status(200).json({ message: "Item marked as completed", item });
     } else {
         res.status(404).json({ message: "Item not found" });
