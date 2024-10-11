@@ -73,6 +73,7 @@ export const ListItem = (props: LiteeItemProp) => {
                     initialValue={label}
                     onCancel={() => setIsFormVisible(false)}
                     onSubmit={(value) => updateTodoHandler({ id, label: value })}
+                    isVisible={isFormVisible}
                 />
             )}
         </StyledDiv>

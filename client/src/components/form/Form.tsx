@@ -1,5 +1,5 @@
 import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { Input } from "./Input";
@@ -15,12 +15,17 @@ type FormProps = {
     initialValue: string;
     onSubmit: (value: string) => void;
     onCancel: () => void;
+    isVisible: boolean;
 };
 
 export const Form = (props: FormProps) => {
-    const { initialValue, onSubmit, onCancel } = props;
-
+    const { initialValue, onSubmit, onCancel, isVisible } = props;
     const [inputValue, setInputValue] = useState(initialValue);
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (isVisible) inputRef.current?.focus();
+    }, [isVisible]);
 
     return (
         <FormStyled
@@ -32,7 +37,7 @@ export const Form = (props: FormProps) => {
                 onCancel();
             }}
         >
-            <Input value={inputValue} onValueChange={(value) => setInputValue(value)} />
+            <Input value={inputValue} onValueChange={(value) => setInputValue(value)} ref={inputRef} />
             <Button type={"submit"} variant="primary">
                 <CheckIcon />
             </Button>

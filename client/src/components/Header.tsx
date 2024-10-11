@@ -42,6 +42,7 @@ export const Header = (props: HeaderProps) => {
                 <Form
                     onSubmit={(label) => addTodoHandled({ label })}
                     onCancel={() => setIsFormVisible(false)}
+                    isVisible={isFormVisible}
                     initialValue=""
                 />
             )}
