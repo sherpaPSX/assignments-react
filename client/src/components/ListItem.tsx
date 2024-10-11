@@ -11,6 +11,15 @@ const Label = styled.label`
     margin-left: 15px;
 `;
 
+const ItemActions = styled.div`
+    display: inline-flex;
+    gap: 0.5rem;
+    position: relative;
+    opacity: 0;
+    transition: ease all 0.25s;
+    right: -1rem;
+`;
+
 const StyledDiv = styled.div`
     display: flex;
     align-items: center;
@@ -20,11 +29,11 @@ const StyledDiv = styled.div`
     ${Label} {
         margin-right: auto;
     }
-`;
 
-const ItemActions = styled.div`
-    display: inline-flex;
-    gap: 0.5rem;
+    &:hover ${ItemActions} {
+        opacity: 1;
+        right: 0;
+    }
 `;
 
 export type LiteeItemProp = {

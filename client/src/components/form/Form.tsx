@@ -8,6 +8,7 @@ import { Button } from "../Button";
 const FormStyled = styled.form`
     display: flex;
     gap: 0.5rem;
+    flex-grow: 1;
 `;
 
 type FormProps = {
