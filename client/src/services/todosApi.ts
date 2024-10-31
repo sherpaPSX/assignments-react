@@ -1,6 +1,20 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { TodoItemsResponse, TodoItemT } from "../models/todo";
 
+const sortTodos = (todos: TodoItemsResponse) => {
+    return todos
+        .sort((a, b) => b.createdAt - a.createdAt)
+        .sort((a, b) => {
+            if (a.isDone && !b.isDone) {
+                return 1;
+            } else if (!a.isDone && b.isDone) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
+};
+
 export const todosApi = createApi({
     reducerPath: "todoApi",
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
@@ -10,17 +24,7 @@ export const todosApi = createApi({
             query: () => ({ url: "/items" }),
             providesTags: ["Todos"],
             transformResponse: (response: TodoItemsResponse) => {
-                return response
-                    .sort((a, b) => b.createdAt - a.createdAt)
-                    .sort((a, b) => {
-                        if (a.isDone && !b.isDone) {
-                            return 1;
-                        } else if (!a.isDone && b.isDone) {
-                            return -1;
-                        } else {
-                            return 0;
-                        }
-                    });
+                return sortTodos(response);
             },
         }),
         addTodo: builder.mutation<TodoItemT, AddTodoArgs>({
@@ -31,7 +35,20 @@ export const todosApi = createApi({
                     ...body,
                 },
             }),
-            invalidatesTags: ["Todos"],
+            async onQueryStarted({ label }, { dispatch, queryFulfilled }) {
+                const patchResult = dispatch(
+                    todosApi.util.updateQueryData("getTodos", undefined, (draft) => {
+                        draft.push({
+                            id: new Date().getTime().toString(),
+                            createdAt: new Date().getDate(),
+                            isDone: false,
+                            label,
+                        });
+                        sortTodos(draft);
+                    })
+                );
+                queryFulfilled.catch(patchResult.undo);
+            },
         }),
         updateTodo: builder.mutation<TodoItemT, UpdateTodoArgs>({
             query: ({ id, label }) => ({
@@ -41,7 +58,15 @@ export const todosApi = createApi({
                     label,
                 },
             }),
-            invalidatesTags: ["Todos"],
+            onQueryStarted({ id, label }, { dispatch, queryFulfilled }) {
+                const patchResult = dispatch(
+                    todosApi.util.updateQueryData("getTodos", undefined, (draft) => {
+                        const updatedIndex = draft.findIndex((item) => item.id === id);
+                        if (updatedIndex !== -1) draft[updatedIndex].label = label;
+                    })
+                );
+                queryFulfilled.catch(patchResult.undo);
+            },
         }),
 
         finishTodo: builder.mutation<void, FinishTodoArgs>({
@@ -52,7 +77,16 @@ export const todosApi = createApi({
                     isDone,
                 },
             }),
-            invalidatesTags: ["Todos"],
+            onQueryStarted({ id, isDone }, { dispatch, queryFulfilled }) {
+                const patchResult = dispatch(
+                    todosApi.util.updateQueryData("getTodos", undefined, (draft) => {
+                        const updatedIndex = draft.findIndex((item) => item.id === id);
+                        if (updatedIndex !== -1) draft[updatedIndex].isDone = isDone;
+                        sortTodos(draft);
+                    })
+                );
+                queryFulfilled.catch(patchResult.undo);
+            },
         }),
 
         deleteTodo: builder.mutation<void, DeleteTodoArgs>({
@@ -60,7 +94,15 @@ export const todosApi = createApi({
                 url: `/items/${id}`,
                 method: "DELETE",
             }),
-            invalidatesTags: ["Todos"],
+            onQueryStarted({ id }, { dispatch, queryFulfilled }) {
+                const patchResult = dispatch(
+                    todosApi.util.updateQueryData("getTodos", undefined, (draft) => {
+                        const index = draft.findIndex((todo) => todo.id === id);
+                        if (index !== -1) draft.splice(index, 1);
+                    })
+                );
+                queryFulfilled.catch(patchResult.undo);
+            },
         }),
     }),
 });

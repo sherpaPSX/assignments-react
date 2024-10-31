@@ -10,7 +10,7 @@ server.use((req, res, next) => {
     if (req.method === "POST") {
         req.body.createdAt = Date.now();
     }
-    next();
+    setTimeout(() => next(), 3000);
 });
 
 server.patch("/items/:id/complete", (req, res) => {

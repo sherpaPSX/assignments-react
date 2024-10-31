@@ -1,5 +1,5 @@
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 import { Checkbox } from "./Checkbox";
@@ -47,11 +47,7 @@ export type LiteeItemProp = {
 export const ListItem = (props: LiteeItemProp) => {
     const { id, label, isDone, onItemDoneToggle, onItemDelete } = props;
     const [isFormVisible, setIsFormVisible] = useState(false);
-    const [updateTodoHandler, { isSuccess }] = useUpdateTodoMutation();
-
-    useEffect(() => {
-        setIsFormVisible(false);
-    }, [isSuccess]);
+    const [updateTodoHandler] = useUpdateTodoMutation();
 
     return (
         <StyledDiv>
@@ -72,7 +68,10 @@ export const ListItem = (props: LiteeItemProp) => {
                 <Form
                     initialValue={label}
                     onCancel={() => setIsFormVisible(false)}
-                    onSubmit={(value) => updateTodoHandler({ id, label: value })}
+                    onSubmit={(value) => {
+                        setIsFormVisible(false);
+                        updateTodoHandler({ id, label: value });
+                    }}
                     isVisible={isFormVisible}
                 />
             )}

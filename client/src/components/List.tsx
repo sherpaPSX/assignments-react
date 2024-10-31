@@ -10,12 +10,13 @@ const StyledList = styled.div`
 `;
 
 export const List = () => {
-    const { data } = useGetTodosQuery();
+    const { data, isLoading } = useGetTodosQuery();
     const [deleteItemHandler] = useDeleteTodoMutation();
     const [finishItemHandler] = useFinishTodoMutation();
 
     return (
         <StyledList>
+            {isLoading && <p>Loading todos...</p>}
             {data?.map(({ isDone, label, id }) => (
                 <ListItem
                     key={id}
