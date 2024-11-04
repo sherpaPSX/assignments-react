@@ -1,23 +1,31 @@
 import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { Input } from "./Input";
+import { Button } from "../Button";
 
 const FormStyled = styled.form`
     display: flex;
+    gap: 0.5rem;
+    flex-grow: 1;
 `;
 
 type FormProps = {
     initialValue: string;
     onSubmit: (value: string) => void;
     onCancel: () => void;
+    isVisible: boolean;
 };
 
 export const Form = (props: FormProps) => {
-    const { initialValue, onSubmit, onCancel } = props;
-
+    const { initialValue, onSubmit, onCancel, isVisible } = props;
     const [inputValue, setInputValue] = useState(initialValue);
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (isVisible) inputRef.current?.focus();
+    }, [isVisible]);
 
     return (
         <FormStyled
@@ -29,13 +37,13 @@ export const Form = (props: FormProps) => {
                 onCancel();
             }}
         >
-            <Input value={inputValue} onValueChange={(value) => setInputValue(value)} />
-            <button type={"submit"}>
+            <Input value={inputValue} onValueChange={(value) => setInputValue(value)} ref={inputRef} />
+            <Button type={"submit"} variant="primary">
                 <CheckIcon />
-            </button>
-            <button type={"reset"}>
+            </Button>
+            <Button type={"reset"} variant="danger" onClick={() => onCancel()}>
                 <Cross1Icon />
-            </button>
+            </Button>
         </FormStyled>
     );
 };
